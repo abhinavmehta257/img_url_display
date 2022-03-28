@@ -1,0 +1,40 @@
+
+<div class="api-usage">
+    <p>Rate Limit allowed: {{rate_limit_allowed}}</p>
+    <p>Rate Limit remaining: {{rate_limit_remaining}}</p>
+    <p>Rate Limit reset at: {{rate_limit_reset_at}}</p>
+</div>
+
+<h1 align="center">Image links from {{folder}}</h1>
+<table>
+    <tr>
+        <th>S. no.</th>
+        <th>Link</th>
+        <th>Image</th>
+    </tr>
+{{#each url_list}}
+
+    <tr>
+    <td>{{@index}}</td>
+    <td><input onclick="copyLink(this)" type="text" readonly="readonly" value="{{this.secure_url}}"></td>
+    <td> <a href="{{this.secure_url}}" target="_blank" ><img src="{{this.secure_url}}" width="50px"></a></td>
+{{/each}}
+</table>
+
+<script>
+    function copyLink(input){
+        input.select();
+        document.execCommand("copy");
+        showSnackbar();
+    }
+    function showSnackbar() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+</script>
